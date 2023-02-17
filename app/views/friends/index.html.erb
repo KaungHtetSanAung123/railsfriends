@@ -1,0 +1,31 @@
+<% if user_signed_in? %>
+
+  <h1>Friend List</h1>
+
+  <%= link_to "New friend", new_friend_path, class: "btn btn-sm btn-secondary my-3" %>
+
+  <div id="friends">
+    <table class="table">
+        <thead>
+          <th scope="score">Name</th>
+          <th scope="score">Email</th>
+          <th scope="score">Phone</th>
+          <th scope="score">Twitter</th>
+        </thead>
+        <tbody>
+        <% @friends.each do |friend| %>
+          <% if friend.user == current_user %>
+            <tr>
+              <td><%= link_to friend.first_name + " " + friend.last_name, friend %></td>
+              <td><%= friend.email %></td>
+              <td><%= friend.phone %></td>
+              <td><%= friend.twitter %></td>
+            </tr>
+          <% end %>
+        <% end %>
+    </tbody>
+  </table>
+  </div>
+<% else %>
+  <h1>Home Page</h1>
+<% end %>
